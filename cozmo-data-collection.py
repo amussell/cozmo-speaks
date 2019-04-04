@@ -22,7 +22,7 @@ def detectImages():
 
                 pilImg = imageQueue.get()
                 box, imgResized = model.object_detect(pilImg.copy())
-                cleanImg = imgResized.copy();
+                cleanImg = imgResized.copy()
                 draw_boxes(box, imgResized, (model.size, model.size))
 
                 imgWithBox = np.array(imgResized) 

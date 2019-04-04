@@ -6,8 +6,8 @@ from sklearn.model_selection import train_test_split
 import pickle
 from collections import Counter
 
-datafile = 'dataset.csv'
-pickleFile = 'testModel.pickle'
+datafile = 'data/newDataset.csv'
+pickleFile = 'model/testModel.pickle'
 
 #Load data
 print('Loading dataset')
