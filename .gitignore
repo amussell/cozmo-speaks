@@ -4,3 +4,6 @@ data/*
 model/*
 model/
 fastai
+*.jpg
+__pycache__/
+.DS_Store
