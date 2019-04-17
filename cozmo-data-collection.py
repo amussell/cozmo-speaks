@@ -8,9 +8,12 @@ import time
 import threading
 import numpy as np
 import sys
+import os
 import pandas as pd
 import base64
 import CS481Dataset
+
+#sys.stderr = os.devnull #hide errors
 
 def detectImages():
     global data
@@ -33,14 +36,13 @@ def detectImages():
                 plt.imshow(imgBox)
                 plt.pause(0.001) # imshow needs time to plot the image. Need this to display the image
 
-                print('Do you want to save this image? (y for yes, s for save):')
+                print('Do you want to save this image? (y for yes):')
                 response = sys.stdin.readline()
                 if response.strip() == 'y':
                     CS481Dataset.encodeAndSaveImage(data, pilImage, label, formattedBox)
                     imgCount+=1
                     print(label + '\n')
                     print('img count: ' + str(imgCount) + '\n')
-                elif response.strip() == 's':
                     data.to_csv(dataset, index=False)
                     print('saved' + '\n')
                 
@@ -64,7 +66,7 @@ def cozmo_program(robot: cozmo.robot.Robot):
         time.sleep(0.1)
 
 
-model = Model(path='../f18/data/coco2014', jpegs='../f18/train2014', bb_csv='../f18/data/coco2014/tmp/bb.csv')
+model = Model(path='../cs481-senior-design/f18/data/coco2014', jpegs='../cs481-senior-design/f18/train2014', bb_csv='../cs481-senior-design/f18/data/coco2014/tmp/bb.csv')
 imageQueue = queue.Queue(maxsize=1)
 
 dataset = 'dataset.csv'

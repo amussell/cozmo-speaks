@@ -7,6 +7,7 @@ import queue
 import time
 import threading
 import numpy as np
+import sys, os
 
 def detectImages():
     print('Detect Images started')
@@ -59,7 +60,7 @@ def cozmo_program(robot: cozmo.robot.Robot):
         time.sleep(0.1)
 
 
-model = Model(path='../f18/data/coco2014', jpegs='../f18/train2014', bb_csv='../f18/data/coco2014/tmp/bb.csv')
+model = Model(path='../cs481-senior-design/f18/data/coco2014', jpegs='../cs481-senior-design/f18/train2014', bb_csv='../cs481-senior-design/f18/data/coco2014/tmp/bb.csv')
 imageQueue = queue.Queue(maxsize=1)
 
 threading.Thread(target=detectImages).start()

@@ -85,9 +85,9 @@ def cozmo_program(robot: cozmo.robot.Robot):
         time.sleep(0.1)
 
 
-model = Model(path='../f18/data/coco2014', jpegs='../f18/train2014', bb_csv='../f18/data/coco2014/tmp/bb.csv')
+model = Model(path='../cs481-senior-design/f18/data/coco2014', jpegs='../cs481-senior-design/f18/train2014', bb_csv='../cs481-senior-design/f18/data/coco2014/tmp/bb.csv')
 
-with open('language-model.pickle', 'rb') as handle:
+with open('../cs481-senior-design/s19/language-model.pickle', 'rb') as handle:
     predModel = pickle.load(handle) #trying to load a LanguageModel type
 
 imageQueue = queue.Queue(maxsize=1)
