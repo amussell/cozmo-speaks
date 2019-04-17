@@ -13,8 +13,6 @@ import pandas as pd
 import base64
 import CS481Dataset
 
-#sys.stderr = os.devnull #hide errors
-
 def detectImages():
     global data
     imgCount = 0
@@ -36,7 +34,7 @@ def detectImages():
                 plt.imshow(imgBox)
                 plt.pause(0.001) # imshow needs time to plot the image. Need this to display the image
 
-                print('Do you want to save this image? (y for yes):')
+                print('Do you want to save this image? (y for yes, press enter for next image):')
                 response = sys.stdin.readline()
                 if response.strip() == 'y':
                     CS481Dataset.encodeAndSaveImage(data, pilImage, label, formattedBox)
