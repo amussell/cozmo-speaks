@@ -4,14 +4,11 @@ data/*
 model/*
 model/
 fastai
-<<<<<<< HEAD
 .ipynb_checkpoints/
 __pycache__/
 Untitled.ipynb
-=======
 *.jpg
 __pycache__/
 .DS_Store
 out.txt
 err.txt
->>>>>>> 080611d1dbfc020f633d21e7d3f5eb62387270d3
