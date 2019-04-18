@@ -79,6 +79,4 @@ for word in set(test.word):
 with open(pickleFile, 'wb') as handle:
     pickle.dump(langMod, handle)
 
-# Test WAC Nodes
-
 
