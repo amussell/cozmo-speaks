@@ -66,3 +66,88 @@ trained we evaluate all of the individual label classifiers together. For exampl
   can be both blue and square the labels are not disjoint) then in order for the negative examples to be generated accurately, every sample image must be labeled
   with every label that applies to it. If an image of a blue square is marked in one row of the dataset only as blue and not as a square, then test-vgg-wac.py
   will assume that because it was not labeled as a square it can be used as a negative sample for the 'sqaure' classifier.
+  
+  ---
+# Cozmo Setup
+Use this link to setup cozmo: http://cozmosdk.anki.com/docs/initial.html 
+- iPhone
+    1. Download the cozmo app from the app store.
+    2. Connect the charging station to your computer and place Cozmo on it.
+    3. Start the app, follow instructions, and enter SDK mode.
+- Android
+    1. Install adb (android debug bridge)
+    2. Enter developer mode on your phone
+    3. Plug your phone into your computer
+    4. Download the cozmo app to your phone
+    5. Start the app, follow instructions, and enter SDK mode.
+
+Use the wifi on your phone to connect to Cozmo. To see Cozmo’s wifi password, lift his arm up and down once while on the charging station.  
+
+### Cozmo SDK
+Setup instructions for the SDK and demo scripts are at http://cozmosdk.anki.com/docs/initial.html
+
+----
+# Project Setup
+1. Install Anaconda https://www.anaconda.com/distribution/
+2. Clone the senior design repository.
+3. Clone the fastai repo.
+    a. `git clone https://github.com/fastai/fastai.git`
+    b. `cd fastai/`
+4. Create the fastai environment.
+    a. With CUDA: `conda env create -f environment.yml`
+    b. Or with CPU only: `conda env update -f environment-cpu.yml`
+5. In the senior design directory that the scripts are in, create a symbolic link to fastai/old/fastai.
+    a. `ln -s ../../fastai/old/fastai/ fastai`
+6. Activate the environment (allows you to use the libraries without pip installing all of them).
+    a. Linux: `conda activate fastai`
+    b. Windows: `activate fastai`
+7. Run a Cozmo script
+8. There will likely be a number of modules that you will need to install. pip install <module> is usually the fix, but you should google the error to find exactly what to do. This project will likely involve a lot of system specific fixes. 
+
+---
+# Script Usage
+
+## All Scripts
+You can hide error output to console (preferred when not debugging) by adding 2>err.txt when starting a script. Simply do not put this when you want to see error output.
+
+## Object Detection Script
+cd into the directory containing the scripts. With Cozmo and your phone connected to your computer, enter
+`python cozmo-object-detection.py 2>err.txt`
+This script creates 2 windows: one displays a live feed from Cozmo’s camera; the other displays the processed image with a bounding box drawn around the object being detected.
+
+**Possible Issues:**
+- There are paths for the model at the bottom of the script that may need to be adjusted for your directory layout.
+
+## Data Collection Script
+cd into the directory containing the scripts. With Cozmo and your phone connected to your computer, enter
+`python cozmo-data-collection.py 2>err.txt`
+This script will prompt you for the label. After providing the label, 2 windows will pop up. One is the camera feed from Cozmo, the other is the current cropped image you are evaluating. You will be prompted in the console if you want to save the image to the dataset. If you do, enter yes. If you want to see the next image, just press enter with no input. When the script first starts, the first several images will be black and white. Hit enter a few times to flush these out. You will need to rerun the script each time you want to change the label. If you want to change which csv file will be used to store the images, change the variable near the bottom of the script
+
+**Possible Issues:**
+- There are paths for the model at the bottom of the script that may need to be adjusted for your directory layout.
+- The dataset file specified at the bottom of the script may not exist. Create it and add:
+`img,label,dimensions,crop`
+- The dataset file might be a different name. Change it in the script to match the actual file.
+
+## Study Script
+cd into the directory containing the scripts. With Cozmo and your phone connected to your computer, enter
+`python cozmo-study.py 2>err.txt`
+This script is for collecting data within the context of a study. It works the same as the data collection script but the prompts are different.
+
+**Possible Issues:**
+- There are paths for the model at the bottom of the script that may need to be adjusted for your directory layout.
+- The dataset file specified at the bottom of the script may not exist. Create it and add:
+`img,label,dimensions,crop`
+- The dataset file might be a different name. Change it in the script to match the actual file.
+
+## Color Identification Script
+cd into the directory containing the scripts. With Cozmo and your phone connected to your computer, enter
+`python cozmo-color-identification.py 2>err.txt`
+This script require a model in pickle form to work. This model is loaded in near the bottom of the script. This script is similar to the object detection in the way it runs. It will however prompt you to tell it when to give a prediction. Simply type “y” to get it to predict. It will grab the first 8 frames after signalling that you want to predict. After some time, Cozmo will say his prediction and the prompt will appear again. A prediction is made for each of the 8 frames. The prediction that Cozmo speaks is based on the most frequent output from the 8 images. This may not be the best method (prediction with highest confidence may be a better method). This can be changed in the predict() method. The number of images analyzed during a prediction cycle can be changed in the ImageBuffer variable instantiation near the bottom of the script. 
+
+**Possible Issues:**
+- There are paths for the model at the bottom of the script that may need to be adjusted for your directory layout.
+- The pickled model may not exist or the path may be incorrect.
+
+  
+  
