@@ -108,7 +108,7 @@ Setup instructions for the SDK and demo scripts are at http://cozmosdk.anki.com/
 # Script Usage
 
 ## All Scripts
-You can hide error output to console (preferred when not debugging) by adding 2>err.txt when starting a script. Simply do not put this when you want to see error output.
+You can hide error output to console (preferred when not debugging) by adding `2>err.txt` when starting a script. Simply do not put this when you want to see error output.
 
 ## Object Detection Script
 cd into the directory containing the scripts. With Cozmo and your phone connected to your computer, enter
@@ -147,7 +147,4 @@ This script require a model in pickle form to work. This model is loaded in near
 
 **Possible Issues:**
 - There are paths for the model at the bottom of the script that may need to be adjusted for your directory layout.
-- The pickled model may not exist or the path may be incorrect.
-
-  
-  
+- The pickled model may not exist or the path to it may be incorrect.
