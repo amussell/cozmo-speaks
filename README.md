@@ -102,7 +102,7 @@ Setup instructions for the SDK and demo scripts are at http://cozmosdk.anki.com/
     a. Linux: `conda activate fastai`
     b. Windows: `activate fastai`
 7. Run a Cozmo script
-8. There will likely be a number of modules that you will need to install. pip install <module> is usually the fix, but you should google the error to find exactly what to do. This project will likely involve a lot of system specific fixes. 
+8. There will likely be a number of modules that you will need to install. `pip install <module>` is usually the fix, but you should google the error to find exactly what to do. This project will likely involve a lot of system specific fixes. 
 
 ---
 # Script Usage
